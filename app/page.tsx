@@ -1,5 +1,4 @@
 import { Header } from "@/components/header";
-import Image from "next/image";
 import { ScoreBar } from "@/components/score-bar";
 
 export default function Home() {

@@ -19,12 +19,15 @@ export const LineGraph = ({ score }: { score: number }) => {
 	}
 	return (
 		<LineChart
-			xAxis={[{ data: x }]}
+			xAxis={[{ data: x, label: "Score" }]}
+			yAxis={[{ label: "Number of Users" }]}
 			series={[
 				{
 					data: data,
 					showMark: ({ index }) => (data && index ? x[index] === score : false),
 					color: "#78CB5F",
+					curve: "natural",
+					connectNulls: true,
 				},
 			]}
 			width={500}

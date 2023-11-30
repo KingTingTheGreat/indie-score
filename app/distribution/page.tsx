@@ -6,10 +6,12 @@ export default function Distribution() {
 	return (
 		<>
 			<Header />
-			<main className="flex flex-row justify-start items center w-[40%] bg-[#555]">
-				<div className="">
-					<LineGraph score={score} />
-					<p>Your Score: {score}</p>
+			<main>
+				<div className="w-full flex justify-center">
+					<div className="flex flex-col justify-center items-center w-[40%] bg-[#555] m-4 ">
+						<p className="text-xl">Your Score: {score}</p>
+						<LineGraph score={score} />
+					</div>
 				</div>
 			</main>
 		</>

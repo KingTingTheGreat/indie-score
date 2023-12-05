@@ -12,7 +12,7 @@ export const Navigation = () => {
 	return (
 		<nav className="flex justify-between items-center">
 			<NavLink name="About" path="/about" />
-			<NavLink name="Leaderboard" path="/leaderboard" />
+			<NavLink name="Rankings" path="/rankings" />
 			<NavLink name="Distribution" path="/distribution" />
 		</nav>
 	);

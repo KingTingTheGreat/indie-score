@@ -9,7 +9,7 @@ export default function Home() {
 			<Header />
 			<main className="w-full">
 				<div className="flex flex-col w-full items-center justify-between">
-					<h2 className="m-5 text-6xl">Find your rank</h2>
+					<h2 className="m-5 text-6xl text-center">Find your rank</h2>
 					{loggedIn ? (
 						<button className="m-5 px-5 py-2 w-fit text-2xl rounded-2xl bg-[#78CB5F]">
 							Login with Spotify

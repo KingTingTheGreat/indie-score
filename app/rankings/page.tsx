@@ -6,7 +6,6 @@ export default function Rankings() {
 	return (
 		<>
 			<Header />
-			<h1>rankings</h1>
 			<Leaderboard />
 		</>
 	);

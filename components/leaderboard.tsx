@@ -1,56 +1,5 @@
 import { User } from "@/types";
 
-const users: User[] = [
-	{
-		username: "KingTing",
-		score: 96,
-	},
-	{
-		username: "Ridan",
-		score: 80,
-	},
-	{
-		username: "PuppyLover",
-		score: 32,
-	},
-	{
-		username: "MusicLover",
-		score: 82,
-	},
-	{
-		username: "Gamer",
-		score: 72,
-	},
-	{
-		username: "CrazyCatLady",
-		score: 42,
-	},
-	{
-		username: "PandaLover",
-		score: 52,
-	},
-	{
-		username: "CrazyDogLady",
-		score: 62,
-	},
-	{
-		username: "ProudAmerican",
-		score: 23,
-	},
-	{
-		username: "ProgrammingIsFun",
-		score: 83,
-	},
-	{
-		username: "AnimeBoy",
-		score: 53,
-	},
-	{
-		username: "IndieListener",
-		score: 67,
-	},
-];
-
 const TableHeader = ({ text }: { text: any }) => (
 	<th className="p-2 m-1 text-lg text-[#78CB5F] border-solid border-2 border-[#999999]">{text}</th>
 );
@@ -74,15 +23,10 @@ const LeaderboardRow = ({ rank, username, score }: { rank: number; username: str
 };
 
 // display the top 10 users with the most points and their scores
-export const Leaderboard = () => {
+export const Leaderboard = ({ users }: { users: User[] }) => {
 	// const [users, setUsers] = useState([]);
-	// useEffect(() => {
-	// 	fetch("/api/leaderboard")
-	// 		.then((res) => res.json())
-	// 		.then((data) => setUsers(data));
-	// }, []);
 
-	const top = users
+	const topUsers = users
 		.filter((a) => a.score !== undefined)
 		.sort((a, b) => (a.score !== undefined && b.score !== undefined ? b.score - a.score : 0)) // score should always be valid because of filter but i was getting annotation errors
 		.slice(0, 10);
@@ -99,7 +43,7 @@ export const Leaderboard = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{top.map((user, i) => (
+					{topUsers.map((user, i) => (
 						<LeaderboardRow
 							key={i}
 							rank={i + 1}

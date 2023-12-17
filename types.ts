@@ -3,3 +3,10 @@ export type User = {
 	token?: string;
 	score?: number;
 };
+
+export interface ResponseFuncs {
+	GET?: Function;
+	POST?: Function;
+	PUT?: Function;
+	DELETE?: Function;
+}

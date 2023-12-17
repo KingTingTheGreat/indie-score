@@ -11,9 +11,9 @@ const NavLink = ({ name, path }: { name: string; path: string }) => {
 export const Navigation = () => {
 	return (
 		<nav className="flex justify-between items-center">
-			<NavLink name="About" path="/about" />
 			<NavLink name="Rankings" path="/rankings" />
 			<NavLink name="Distribution" path="/distribution" />
+			<NavLink name="About" path="/about" />
 		</nav>
 	);
 };

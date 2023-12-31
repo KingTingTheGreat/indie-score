@@ -27,14 +27,14 @@ export const BarChart = ({ score }: { score: number }) => {
 				chartArea: { width: "80%", height: "80%" },
 				backgroundColor: "#444777",
 				vAxis: {
-					title: "Number of Users",
+					// title: "Number of Users",
 					gridlines: {
 						count: 0, // hide vertical grid lines
 						color: "transparent", // hide vertical grid lines
 					},
 				},
 				hAxis: {
-					title: "Score",
+					// title: "Score",
 					gridlines: {
 						count: 0, // hide vertical grid lines
 						color: "transparent", // hide horizontal grid lines

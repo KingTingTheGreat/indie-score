@@ -1,4 +1,3 @@
-import { Header } from "@/components/header";
 import { ScoreBar } from "@/components/score-bar";
 
 export default function Home() {

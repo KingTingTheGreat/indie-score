@@ -24,7 +24,8 @@ export const BarChart = ({ score }: { score: number }) => {
 				// title: "Distribution of User Scores",
 				bar: { groupWidth: "100%" },
 				legend: { position: "none" },
-				backgroundColor: "#444",
+				chartArea: { width: "80%", height: "80%" },
+				backgroundColor: "#444777",
 				vAxis: {
 					title: "Number of Users",
 					gridlines: {

@@ -1,7 +1,11 @@
+import { DefaultSession } from "next-auth";
+
 export type User = {
-	username: string;
+	name?: string | null;
+	email?: string | null;
+	username?: string;
 	token?: string;
-	score: number;
+	score?: number;
 };
 
 export interface ResponseFuncs {
@@ -12,3 +16,8 @@ export interface ResponseFuncs {
 }
 
 export type DataArray = [number, number, string];
+
+export interface Session extends Omit<DefaultSession, "user"> {
+	user?: User;
+	expires: string;
+}

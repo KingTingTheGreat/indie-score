@@ -4,7 +4,7 @@ export type User = {
 	name?: string | null;
 	email?: string | null;
 	username?: string;
-	token?: string;
+	accessToken?: string;
 	score?: number;
 };
 

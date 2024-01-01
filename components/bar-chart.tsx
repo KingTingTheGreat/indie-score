@@ -13,7 +13,9 @@ export const BarChart = ({ score, users }: { score: number; users: User[] }) => 
 	}
 
 	users.forEach((user) => {
-		data[Math.floor(user.score)][1]++;
+		if (user.score) {
+			data[Math.floor(user.score)][1]++;
+		}
 	});
 
 	console.log("bar chart");

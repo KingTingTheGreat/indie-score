@@ -11,7 +11,7 @@ const processUsers = (users: any) => {
 
 export default async function Distribution() {
 	const score = Math.floor(Math.random() * 100);
-	const users = await fetch("http://localhost:3000/api/users")
+	const users = await fetch("https://indie-score.vercel.app/api/users")
 		.then((response) => response.json())
 		.then((data) => processUsers(data));
 	return (

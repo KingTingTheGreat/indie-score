@@ -20,7 +20,7 @@ export default async function Rankings() {
 		// 	throw new Error("Recipes response data is not an array");
 		// }
 
-		const users = await fetch("http://localhost:3000/api/users")
+		const users = await fetch("https://indie-score.vercel.app/api/users")
 			.then((response) => response.json())
 			.then((data) => processUsers(data));
 

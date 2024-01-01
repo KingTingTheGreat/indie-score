@@ -1,17 +1,20 @@
 "use client";
 import { Chart } from "react-google-charts";
+import { User, DataArray } from "@/types";
 
 const maxScore = 100;
 const title = ["Score", "Number of Users", { role: "style" }];
 
-export const BarChart = ({ score }: { score: number }) => {
-	let data: (number | string)[][] = [];
+export const BarChart = ({ score, users }: { score: number; users: User[] }) => {
+	let data: DataArray[] = [];
 	for (let i = 0; i <= maxScore; i++) {
-		const num = Math.floor(Math.random() * 100) + 1;
-		if (i === score) data.push([i, num, "#FF0000"]);
-		else data.push([i, num, "#78CB5F"]);
+		if (i === score) data.push([i, 0, "#FF0000"]);
+		else data.push([i, 0, "#78CB5F"]);
 	}
-	// data[score][2] = "#FF0000";
+
+	users.forEach((user) => {
+		data[Math.floor(user.score)][1]++;
+	});
 
 	console.log("bar chart");
 	return (

@@ -1,7 +1,7 @@
 export type User = {
 	username: string;
 	token?: string;
-	score?: number;
+	score: number;
 };
 
 export interface ResponseFuncs {
@@ -10,3 +10,5 @@ export interface ResponseFuncs {
 	PUT?: Function;
 	DELETE?: Function;
 }
+
+export type DataArray = [number, number, string];

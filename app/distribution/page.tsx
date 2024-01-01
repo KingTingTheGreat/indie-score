@@ -26,7 +26,7 @@ export default async function Distribution() {
 			</main>
 		);
 	} catch (error) {
-		// console.error(error);
+		console.error(error);
 		console.log("Failed to load user data");
 		return <div>Failed to load user data</div>;
 	}

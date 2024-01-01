@@ -19,7 +19,7 @@ export default async function Rankings() {
 
 		return <Leaderboard users={users} />;
 	} catch (error) {
-		// console.error(error);
+		console.error(error);
 		console.log("Failed to load rankings");
 		return <div>Failed to load rankings</div>;
 	}

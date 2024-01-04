@@ -1,6 +1,15 @@
 import NextAuth from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 
+const randomString = () => {
+	const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	let result = "";
+	for (let i = 0; i < 32; i++) {
+		result += chars.charAt(Math.floor(Math.random() * chars.length));
+	}
+	return result;
+};
+
 const handler = NextAuth({
 	// Configure one or more authentication providers
 	providers: [
@@ -32,6 +41,7 @@ const handler = NextAuth({
 			return session;
 		},
 	},
+	secret: process.env.NEXT_AUTH_SECRET ? process.env.NEXT_AUTH_SECRET : randomString(),
 });
 
 export { handler as GET, handler as POST };

@@ -5,8 +5,8 @@ const handler = NextAuth({
 	// Configure one or more authentication providers
 	providers: [
 		SpotifyProvider({
-			clientId: process.env.SPOTIFY_CLIENT_ID ? process.env.SPOTIFY_CLIENT_ID : "",
-			clientSecret: process.env.SPOTIFY_CLIENT_SECRET ? process.env.SPOTIFY_CLIENT_SECRET : "",
+			clientId: process.env.SPOTIFY_CLIENT_ID as string,
+			clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
 			authorization: {
 				params: {
 					scope: "user-top-read",

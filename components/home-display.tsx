@@ -1,28 +1,37 @@
 "use client";
-import { useState, useEffect } from "react";
-import { LoginButton } from "@/components/login-button";
-import { Session } from "@/types";
-import { getSession } from "next-auth/react";
-import { ScoreBar } from "./score-bar";
-
-const isAuthenticated = async (session: Session | null) => {
-	if (!session || Math.floor(Date.now()) >= (session.user as any).expires_at * 1000) {
-		console.log("not authenticated");
-		return false;
-	}
-	console.log("authenticated");
-	return true;
-};
+import { useEffect, useState } from "react";
+import { SongIcon } from "./song-icon";
+import { LoginButton } from "./login-button";
+import { useSession } from "next-auth/react";
 
 export const HomeDisplay = () => {
-	const score = Math.floor(Math.random() * 100);
+	const [data, setData] = useState(undefined);
+	const { data: session } = useSession();
 
-	const [loggedIn, setLoggedIn] = useState(false);
 	useEffect(() => {
-		getSession().then((session) => {
-			isAuthenticated(session).then((res) => setLoggedIn(res));
-		});
-	}, []);
+		const fetchSongs = async () => {
+			if (session?.user?.accessToken) {
+				const response = await fetch("/api/tracks", {
+					headers: {
+						AccessToken: session.user.accessToken,
+					},
+				});
+				const resData = await response.json();
+				setData(resData);
+			} else {
+				console.log("no session or user or accessToken");
+				console.log(session);
+			}
+		};
+		fetchSongs();
+	}, [session]);
 
-	return loggedIn ? <ScoreBar score={score} /> : <LoginButton />;
+	return (
+		<main className="flex min-h-screen w-[80%] bg-[#987500] flex-wrap items-center justify-between p-24">
+			<LoginButton />
+			{data && data.items
+				? data.items.map((song) => <SongIcon key={song.id} song={song} />)
+				: console.log(`no items to map ${data}`)}
+		</main>
+	);
 };

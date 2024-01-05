@@ -4,6 +4,8 @@ import { usersDBConnect } from "@/utils/connection";
 export const dynamic = "force-dynamic"; // defaults to auto
 
 export async function GET(request: NextRequest) {
+	console.log(request.nextUrl.origin);
+
 	if (request.nextUrl.origin !== process.env.ALLOWED_ORIGIN) {
 		return new Response("Unauthorized", {
 			status: 401,

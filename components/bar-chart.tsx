@@ -18,7 +18,6 @@ export const BarChart = ({ score, users }: { score: number; users: User[] }) => 
 		}
 	});
 
-	console.log("bar chart");
 	return (
 		<Chart
 			chartType="ColumnChart"

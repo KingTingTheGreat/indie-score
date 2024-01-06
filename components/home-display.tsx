@@ -8,15 +8,16 @@ import { Song } from "@/types";
 export const HomeDisplay = () => {
 	const [data, setData] = useState<Song[]>([]);
 	const { data: session } = useSession();
+	const [token, setToken] = useState<string>("");
 
 	useEffect(() => {
 		const fetchSongs = async () => {
 			// @ts-ignore
-			if (session?.user?.accessToken) {
+			setToken(session?.user.accessToken);
+			if (token) {
 				const response = await fetch("/api/tracks", {
 					headers: {
-						// @ts-ignore
-						AccessToken: session.user.accessToken,
+						AccessToken: token,
 					},
 				});
 				const resData = await response.json();
@@ -32,6 +33,7 @@ export const HomeDisplay = () => {
 	return (
 		<main className="flex min-h-screen w-[80%] bg-[#987500] flex-wrap items-center justify-between p-24">
 			<LoginButton />
+			<p>token: {token}</p>
 			{data ? (
 				data.map((song) => <SongIcon key={song.id} song={song} />)
 			) : (

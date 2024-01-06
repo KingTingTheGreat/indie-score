@@ -1,6 +1,4 @@
-import { AboutInfo } from "@/components/about-info";
-
-export default function About() {
+export default function Profile() {
 	return (
 		<div>
 			<p>your profile</p>

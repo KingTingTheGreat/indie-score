@@ -15,7 +15,7 @@ export const HomeDisplay = () => {
 			// @ts-ignore
 			setToken(session?.user.accessToken);
 			if (token) {
-				const response = await fetch("/api/tracks", {
+				const response = await fetch("https://indie-score.vercel.app/api/tracks", {
 					headers: {
 						AccessToken: token,
 					},
@@ -28,7 +28,7 @@ export const HomeDisplay = () => {
 			}
 		};
 		fetchSongs();
-	}, [session]);
+	}, [session, token]);
 
 	return (
 		<main className="flex min-h-screen w-[80%] bg-[#987500] flex-wrap items-center justify-between p-24">

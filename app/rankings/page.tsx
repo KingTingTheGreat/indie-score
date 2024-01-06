@@ -1,5 +1,7 @@
 import { Leaderboard } from "@/components/leaderboard";
 
+const root = process.env.ROOT ? process.env.ROOT : "https://indie-score.vercel.app";
+
 const processUsers = (users: any) => {
 	return users.map((user: any) => {
 		return {
@@ -11,8 +13,7 @@ const processUsers = (users: any) => {
 
 export default async function Rankings() {
 	try {
-		// const users = await fetch((process.env.ROOT as string) + "/api/users", {
-		const users = await fetch("https://indie-score.vercel.app/api/users", {
+		const users = await fetch(root + "/api/users", {
 			headers: { authorization: process.env.API_AUTH as string },
 		})
 			.then((response) => response.json())

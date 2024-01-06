@@ -3,7 +3,7 @@ import "./globals.css";
 import { Root } from "@/components/root";
 
 export const metadata: Metadata = {
-	title: "Indie Ranker",
+	title: "Indiefy",
 	description: "How niche is your music taste?",
 };
 

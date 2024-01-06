@@ -11,7 +11,8 @@ const processUsers = (users: any) => {
 
 export default async function Rankings() {
 	try {
-		const users = await fetch((process.env.ROOT as string) + "/api/users", {
+		// const users = await fetch((process.env.ROOT as string) + "/api/users", {
+		const users = await fetch("https://indie-score.vercel.app/api/users", {
 			headers: { authorization: process.env.API_AUTH as string },
 		})
 			.then((response) => response.json())

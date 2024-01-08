@@ -8,14 +8,14 @@ import { Song } from "@/types";
 export const HomeDisplay = () => {
 	const [data, setData] = useState<Song[]>([]);
 	const { data: session } = useSession();
-	const [token, setToken] = useState<string>("");
 
 	useEffect(() => {
 		const fetchSongs = async () => {
 			// @ts-ignore
-			setToken(session?.user.accessToken);
+			const token = await session?.user.accessToken;
 			if (token) {
 				const response = await fetch("https://indie-score.vercel.app/api/tracks", {
+					// const response = await fetch("http://localhost:3000/api/tracks", {
 					headers: {
 						AccessToken: token,
 					},
@@ -28,17 +28,20 @@ export const HomeDisplay = () => {
 			}
 		};
 		fetchSongs();
-	}, [session, token]);
+	}, [session]);
+
+	// @ts-ignore
+	const d = <p>{JSON.stringify(data)}</p>;
 
 	return (
 		<main className="flex min-h-screen w-[80%] bg-[#987500] flex-wrap items-center justify-between p-24">
 			<LoginButton />
-			<p>token: {token}</p>
 			{data ? (
 				data.map((song) => <SongIcon key={song.id} song={song} />)
 			) : (
 				<p>no data to display. please sign in</p>
 			)}
+			{d}
 		</main>
 	);
 };

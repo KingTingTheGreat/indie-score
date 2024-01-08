@@ -8,6 +8,10 @@ const url = `https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=short_
 export async function GET(request: NextRequest) {
 	try {
 		const headersList = headers();
+		console.log("Headers:");
+		headersList.forEach((value, key) => {
+			console.log(`${key}: ${value}`);
+		});
 		const token = headersList.get("AccessToken");
 		const response = await fetch(url, {
 			headers: {

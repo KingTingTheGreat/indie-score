@@ -14,8 +14,7 @@ export const HomeDisplay = () => {
 			// @ts-ignore
 			const token = await session?.user.accessToken;
 			if (token) {
-				const response = await fetch("https://indie-score.vercel.app/api/tracks", {
-					// const response = await fetch("http://localhost:3000/api/tracks", {
+				const response = await fetch("/api/tracks", {
 					headers: {
 						AccessToken: token,
 					},

@@ -30,9 +30,6 @@ export const HomeDisplay = () => {
 		fetchSongs();
 	}, [session]);
 
-	// @ts-ignore
-	const d = <p>{JSON.stringify(data)}</p>;
-
 	return (
 		<main className="flex min-h-screen w-[80%] bg-[#987500] flex-wrap items-center justify-between p-24">
 			<LoginButton />
@@ -41,7 +38,6 @@ export const HomeDisplay = () => {
 			) : (
 				<p>no data to display. please sign in</p>
 			)}
-			{d}
 		</main>
 	);
 };

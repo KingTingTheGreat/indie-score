@@ -11,7 +11,7 @@ export const Root = ({ children }: { children: React.ReactNode }) => {
 		// 	<Header />
 		// 	{children}
 		// </SessionProvider>
-		<SessionProvider session={null}>
+		<SessionProvider>
 			<html lang="en">
 				<body className={inter.className}>
 					<Header />

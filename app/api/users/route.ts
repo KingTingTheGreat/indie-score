@@ -13,6 +13,13 @@ export async function GET(request: NextRequest) {
 		// 		Buffer.from(process.env.API_AUTH as string)
 		// 	)
 		// ) {
+		const headersList = headers();
+		// iterate and log all headers
+		console.log("Headers:");
+		headersList.forEach((value, key) => {
+			console.log(`${key}: ${value}`);
+		});
+
 		const db = await usersDBConnect();
 		const users = await db.Users.find({});
 		return new Response(JSON.stringify(users), {

@@ -1,6 +1,6 @@
 import { BarChart } from "@/components/bar-chart";
 
-const root = process.env.ROOT ? process.env.ROOT : "https://indie-score.vercel.app";
+const root = process.env.ROOT!;
 
 const processUsers = (users: any) => {
 	return users.map((user: any) => {
@@ -15,7 +15,7 @@ export default async function Distribution() {
 	try {
 		const score = Math.floor(Math.random() * 100);
 		const users = await fetch(root + "/api/users", {
-			headers: { authorization: process.env.API_AUTH as string },
+			headers: { authorization: process.env.API_AUTH! },
 		})
 			.then((response) => response.json())
 			.then((data) => processUsers(data));

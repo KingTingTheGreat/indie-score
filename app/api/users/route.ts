@@ -8,12 +8,6 @@ export const dynamic = "force-dynamic"; // defaults to auto
 export async function GET(request: NextRequest) {
 	try {
 		const headersList = headers();
-		// iterate and log all headers
-		console.log("Headers:");
-		headersList.forEach((value, key) => {
-			console.log(`${key}: ${value}`);
-		});
-		console.log(headersList.get("authorization") == process.env.API_AUTH);
 		if (
 			crypto.timingSafeEqual(
 				Buffer.from(headersList.get("authorization") as string),

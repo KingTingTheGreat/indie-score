@@ -14,16 +14,13 @@ export const HomeDisplay = () => {
 			// @ts-ignore
 			const token = await session?.user.accessToken;
 			if (token) {
-				const response = await fetch("/api/tracks", {
+				fetch("/api/tracks", {
 					headers: {
 						AccessToken: token,
 					},
-				});
-				const resData = await response.json();
-				setData(resData.items);
-			} else {
-				console.log("no session or user or accessToken");
-				console.log(session);
+				})
+					.then((res) => res.json())
+					.then((resData) => setData(resData.items));
 			}
 		};
 		fetchSongs();

@@ -1,13 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { SongIcon } from "./song-icon";
 import { LoginButton } from "./login-button";
 import { useSession } from "next-auth/react";
-import { Song } from "@/types";
+import { Song, Artist, Album } from "@/types";
+import { calculateScore } from "@/utils/calculate-score";
 
 export const HomeDisplay = () => {
-	const [data, setData] = useState<Song[]>([]);
-	const { data: session } = useSession();
+	const [songs, setSongs] = useState<Song[]>([]);
+	const { data: session, update } = useSession();
+	// @ts-ignore
+	const [userScore, setUserScore] = useState<number>(session?.user.score ?? 100);
 
 	useEffect(() => {
 		const fetchSongs = async () => {
@@ -20,17 +23,24 @@ export const HomeDisplay = () => {
 					},
 				})
 					.then((res) => res.json())
-					.then((resData) => setData(resData.items));
+					.then((resData) => setSongs(resData.items));
 			}
 		};
 		fetchSongs();
+		if (songs) {
+			setUserScore(calculateScore(songs));
+			// @ts-ignore
+			if (userScore !== (session?.user.score ?? 100)) {
+				update({ user: { score: userScore } });
+			}
+		}
 	}, [session]);
 
 	return (
-		<main className="flex min-h-screen w-[80%] bg-[#987500] flex-wrap items-center justify-between p-24">
+		<main className="flex flex-col min-h-screen w-[80%] flex-wrap items-center justify-between p-24">
 			<LoginButton />
-			{data ? (
-				data.map((song) => <SongIcon key={song.id} song={song} />)
+			{songs ? (
+				songs.map((song) => <SongIcon key={song.id} song={song} />)
 			) : (
 				<p>no data to display. please sign in</p>
 			)}

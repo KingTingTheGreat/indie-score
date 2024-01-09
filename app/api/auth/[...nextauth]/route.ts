@@ -28,17 +28,30 @@ const handler = NextAuth({
 	// A database is optional, but required to persist accounts in a database
 	// database: process.env.DATABASE_URL,
 	callbacks: {
-		async jwt({ token, account }) {
+		async jwt({ token, user, account, session, trigger }) {
+			// console.log("jwt callback", { token, user, account, session });
+
+			if (trigger === "update" && session!.user.score) {
+				console.log("updating score");
+				token.score = session!.user.score;
+			}
+
 			if (account) {
 				token.id = account.id;
 				token.expires_at = account.expires_at;
 				token.accessToken = account.access_token;
 			}
+			// if (user) {
+			// 	token.email = "user.email";
+			// 	token.name = user.name;
+			// }
 			return token;
 		},
 		async session({ session, token }) {
-			session.user = token;
-			return session;
+			// console.log("session callback", { session, user, token });
+			// session.user = token;
+			// return session;
+			return { ...session, user: token };
 		},
 	},
 	secret: process.env.NEXTAUTH_SECRET!,

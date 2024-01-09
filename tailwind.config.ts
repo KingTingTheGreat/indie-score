@@ -17,6 +17,10 @@ const config: Config = {
 				mono: ["var(--font-roboto-mono)"],
 				superindie: ["superindie"],
 			},
+			colors: {
+				customGreen: "#78CB5F",
+				nullGray: "#333",
+			},
 		},
 	},
 	plugins: [],

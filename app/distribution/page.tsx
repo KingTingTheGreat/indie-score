@@ -1,4 +1,4 @@
-import { BarChart } from "@/components/bar-chart";
+import { DistributionWrapper } from "@/components/distribution-wrapper";
 
 const root = process.env.ROOT!;
 
@@ -13,22 +13,12 @@ const processUsers = (users: any) => {
 
 export default async function Distribution() {
 	try {
-		const score = Math.floor(Math.random() * 100);
 		const users = await fetch(root + "/api/users", {
 			headers: { authorization: process.env.API_AUTH! },
 		})
 			.then((response) => response.json())
 			.then((data) => processUsers(data));
-		return (
-			<main>
-				<div className="w-full flex justify-center">
-					<div className="flex flex-col justify-center items-center min-w-[90%] min-h-[60%] bg-[#555] m-4 ">
-						<p className="text-xl">Your Score: {score}</p>
-						<BarChart score={score} users={users} />
-					</div>
-				</div>
-			</main>
-		);
+		return <DistributionWrapper users={users} />;
 	} catch (error) {
 		console.error(error);
 		console.log("Failed to load user data");

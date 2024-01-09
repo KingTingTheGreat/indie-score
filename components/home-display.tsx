@@ -1,16 +1,16 @@
 "use client";
-import { useEffect, useReducer, useState } from "react";
-import { SongIcon } from "./song-icon";
+import { useEffect, useState } from "react";
+import { TopSongs } from "./top-songs";
 import { LoginButton } from "./login-button";
 import { useSession } from "next-auth/react";
-import { Song, Artist, Album } from "@/types";
+import { Song } from "@/types";
 import { calculateScore } from "@/utils/calculate-score";
 
 export const HomeDisplay = () => {
 	const [songs, setSongs] = useState<Song[]>([]);
 	const { data: session, update } = useSession();
 	// @ts-ignore
-	const [userScore, setUserScore] = useState<number>(session?.user.score ?? 100);
+	const [userScore, setUserScore] = useState<number>(session?.user.score ?? 0);
 
 	useEffect(() => {
 		const fetchSongs = async () => {
@@ -30,7 +30,7 @@ export const HomeDisplay = () => {
 		if (songs) {
 			setUserScore(calculateScore(songs));
 			// @ts-ignore
-			if (userScore !== (session?.user.score ?? 100)) {
+			if (userScore !== (session?.user.score ?? 0)) {
 				update({ user: { score: userScore } });
 			}
 		}
@@ -38,12 +38,7 @@ export const HomeDisplay = () => {
 
 	return (
 		<main className="flex flex-col min-h-screen w-[80%] flex-wrap items-center justify-between p-24">
-			<LoginButton />
-			{songs ? (
-				songs.map((song) => <SongIcon key={song.id} song={song} />)
-			) : (
-				<p>no data to display. please sign in</p>
-			)}
+			{songs ? <TopSongs songs={songs} /> : <LoginButton />}
 		</main>
 	);
 };

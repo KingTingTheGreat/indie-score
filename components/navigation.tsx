@@ -3,7 +3,7 @@ import ProfileLink from "./profile-link";
 
 const NavLink = ({ name, path }: { name: string; path: string }) => {
 	return (
-		<Link href={path} className="m-1 p-2 rounded bg-[#333333]">
+		<Link href={path} className="m-1 p-2 rounded bg-nullGray">
 			{name}
 		</Link>
 	);

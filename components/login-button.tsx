@@ -8,7 +8,7 @@ export const LoginButton = () => {
 	};
 
 	return (
-		<button className="m-5 px-5 py-2 w-fit text-2xl rounded-2xl bg-[#78CB5F]" onClick={handleLogin}>
+		<button className="m-5 px-5 py-2 w-fit text-2xl rounded-2xl bg-customGreen" onClick={handleLogin}>
 			Login with Spotify
 		</button>
 	);

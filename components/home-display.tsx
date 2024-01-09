@@ -24,7 +24,7 @@ export const HomeDisplay = () => {
 					},
 				})
 					.then((res) => res.json())
-					.then((resData) => setSongs(resData.items));
+					.then((data) => setSongs(data.items));
 			}
 		};
 		fetchSongs();
@@ -42,7 +42,7 @@ export const HomeDisplay = () => {
 	return (
 		<main className="flex flex-col min-h-screen w-[80%] flex-wrap items-center justify-between p-24">
 			<p>username: {username}</p>
-			{songs ? <TopSongs songs={songs} /> : <LoginButton />}
+			{songs.length > 0 ? <TopSongs songs={songs} /> : <LoginButton />}
 		</main>
 	);
 };
